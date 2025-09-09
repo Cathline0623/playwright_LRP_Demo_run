@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: reports\allure-results
+          path: reports/allure-results/
 
       - name: Upload Playwright HTML report
         if: always()
