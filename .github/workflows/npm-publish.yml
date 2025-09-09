@@ -1,4 +1,4 @@
-name: Playwright CI
+name: Playwright CI 
 
 on:
   push:
@@ -29,16 +29,19 @@ jobs:
         run: |
           npm install -D allure-playwright allure-commandline
 
-      - name: Run Playwright tests with Allure + HTML reporter
+      # Run tests with Playwright HTML + Allure reporter
+      - name: Run Playwright tests
         run: npx playwright test --reporter=line,allure-playwright,html
 
+      # Debug to confirm allure results exist
+      - name: Debug allure results
+        run: ls -R ./allure-results || echo "No allure results found"
+
+      # Generate Allure HTML report
       - name: Generate Allure report
-        run: npx allure generate ./allure-results --clean -o ./allure-report
+        run: npx allure-commandline generate ./allure-results --clean -o ./allure-report
 
-      - name: Debug folder structure
-        if: always()
-        run: ls -R
-
+      # Upload Allure HTML report
       - name: Upload Allure HTML report
         if: always()
         uses: actions/upload-artifact@v4
@@ -46,6 +49,7 @@ jobs:
           name: allure-report
           path: allure-report/
 
+      # Upload Playwright HTML report
       - name: Upload Playwright HTML report
         if: always()
         uses: actions/upload-artifact@v4
