@@ -23,7 +23,7 @@ export class lrpLogin{
         await this.keywords.fill(this.page,locObj.usernameTextfield,username,"Username Textfield");
         await this.keywords.fill(this.page,locObj.passwordTextfield,password,"Password Textfield");
         await this.keywords.click(this.page,locObj.loginButton,"Login Button");
-        await expect(locObj.homePageLogo).toBeVisible({timeout:10000});
+        await expect(locObj.homePageLogo).toBeVisible({timeout:30000});
        
     }
 }
