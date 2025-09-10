@@ -60,7 +60,7 @@ const config = {
     browserName: browserName(),
     actionTimeout: 5000,
     headless: browserMode(),
-    viewport: null,
+    viewport: { width: 1368, height: 768 },
     screenshot: 'on',
     trace: 'off',
     launchOptions: {
